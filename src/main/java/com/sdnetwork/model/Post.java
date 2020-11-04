@@ -39,7 +39,7 @@ public class Post {
 	private String imageLink;
 	
 	@OneToMany(mappedBy = "Post", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-	private Set<Like> likes;
+	private Set<User> likedBy;
 	
 	public Post() {
 		super();
@@ -55,7 +55,7 @@ public class Post {
 	}
 
 	public Post(int postId, int posterId, String postText, int numberOfLikes, Timestamp dateTimePosted,
-			boolean isImagePost, String imageLink, Set<Like> likes) {
+			boolean isImagePost, String imageLink, Set<User> likedBy) {
 		super();
 		this.postId = postId;
 		this.posterId = posterId;
@@ -64,7 +64,7 @@ public class Post {
 		this.dateTimePosted = dateTimePosted;
 		this.isImagePost = isImagePost;
 		this.imageLink = imageLink;
-		this.likes = likes;
+		this.likedBy = likedBy;
 	}
 
 	public int getPostId() {
@@ -123,12 +123,13 @@ public class Post {
 		this.imageLink = imageLink;
 	}
 
-	public Set<Like> getLikes() {
-		return likes;
+	public Set<User> getLikedBy() {
+		return likedBy;
 	}
 
-	public void setLikes(Set<Like> likes) {
-		this.likes = likes;
+	public void setLikedBy(Set<User> likedBy) {
+		this.likedBy = likedBy;
 	}
+
 
 }

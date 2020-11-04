@@ -4,7 +4,7 @@
 
 <hibernate-configuration>
 
-<session-factory>
+	<session-factory>
 		<property name="hibernate.connection.username">sdnetwork</property>
 		<property name="hibernate.connection.password">gottagofast</property>
 		<property name="hibernate.connection.url">
@@ -24,16 +24,14 @@
 		<property name="hibernate.connection.format_sql">true</property>
 		<!-- this is the connection pool size for hibernate -->
 		<property name="hibernate.connection.pool_size">10</property>
-		<!-- hibernate mapping to data definition language 
-			create					will drop your tables upon startup and create them all again
-			create-drop				will drop your tables if something goes wrong causing the program to stop.
-			update					will update the tables if something in the mappings changes
-			none					will not affect the tables at all, no ddl.
-		-->
+		<!-- hibernate mapping to data definition language create will drop your 
+			tables upon startup and create them all again create-drop will drop your 
+			tables if something goes wrong causing the program to stop. update will update 
+			the tables if something in the mappings changes none will not affect the 
+			tables at all, no ddl. -->
 		<property name="hibernate.hbm2ddl.auto">create</property>
-		<mapping class="com.sdnetwork.model.User"/>
-		<mapping class="com.sdnetwork.model.Post"/>
-		<mapping class="com.sdnetwork.model.Like"/>
+		<mapping class="com.sdnetwork.model.User" />
+		<mapping class="com.sdnetwork.model.Post" />
 	</session-factory>
 
 

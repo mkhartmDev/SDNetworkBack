@@ -37,11 +37,11 @@ public class User {
 	@Column(name="pfp_link")
 	private String pfpLink;
 	
-	@OneToMany(mappedBy = "User", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "User", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private Set<Post> posts;
 	
 	@OneToMany(mappedBy = "User", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-	private Set<Like> likes;
+	private Set<Post> likes;
 	
 	public User() {
 		super();
@@ -71,7 +71,7 @@ public class User {
 
 	
 	public User(int userId, String username, String password, String email, String firstName, String lastName,
-			String pfpLink, Set<Post> posts, Set<Like> likes) {
+			String pfpLink, Set<Post> posts, Set<Post> likes) {
 		super();
 		this.userId = userId;
 		this.username = username;
