@@ -37,15 +37,8 @@ public class UserDao implements DaoContract<User, Integer> {
 
 	@Override
 	public User save(User t) {
-<<<<<<< HEAD
 		Session sess= HibernateUtil.getSessionFactory().openSession();
 		sess.save(t);
-=======
-		Session sess = HibernateUtil.getSessionFactory().openSession();
-		Transaction tx = sess.beginTransaction();
-		sess.persist(t);
-		tx.commit();
->>>>>>> f4ec2aa36cd2fc7767ef4e1667ed38834c008518
 		return t;
 	}
 
