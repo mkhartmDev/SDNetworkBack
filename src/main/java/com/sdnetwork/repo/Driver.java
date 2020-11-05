@@ -9,7 +9,9 @@ public class Driver {
 		UserDao ud = new UserDao();
 		User u = new User("cats", "q", "f", "d", "p", "q");
 		
-		System.out.println(ud.save(u));
+		
+		ud.save(u);
+		System.out.println(u);
 //		System.out.println(ud.findAll());
 //		System.out.println(ud.findById(1));
 //		u.setLastName("iaf");

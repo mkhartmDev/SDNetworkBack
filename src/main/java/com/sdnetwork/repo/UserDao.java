@@ -2,6 +2,8 @@ package com.sdnetwork.repo;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
@@ -9,6 +11,7 @@ import com.sdnetwork.model.User;
 import com.sdnetwork.util.HibernateUtil;
 
 @Repository
+@Transactional
 public class UserDao implements DaoContract<User, Integer> {
 
 	@Override
@@ -33,7 +36,8 @@ public class UserDao implements DaoContract<User, Integer> {
 
 	@Override
 	public User save(User t) {
-		HibernateUtil.getSessionFactory().openSession().persist(t);
+		Session sess= HibernateUtil.getSessionFactory().openSession();
+		sess.save(t);
 		return t;
 	}
 
