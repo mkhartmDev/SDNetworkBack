@@ -15,15 +15,16 @@ public class Driver {
 		UserDao ud = ac.getBean(UserDao.class);
 		User u = new User("cats", "q", "f", "d", "p", "q");
 
-		ud.save(u);
-		System.out.println(u);
-		System.out.println(ud.findAll());
-		System.out.println(ud.findById(1));
-		u.setLastName("iaf");
-		System.out.println(ud.update(u));
-		System.out.println(ud.delete(u.getUserId()));
-		
-		((ConfigurableApplicationContext)ac).close();
+//		ud.save(u);
+//		System.out.println(u);
+//		System.out.println(ud.findAll());
+//		System.out.println(ud.findById(1));
+//		u.setLastName("iaf");
+//		System.out.println(ud.update(u));
+//		System.out.println(ud.delete(u.getUserId()));
+//		
+//		((ConfigurableApplicationContext)ac).close();
+		System.out.println(ud.findByUsername("notreal"));
 
 
 	}

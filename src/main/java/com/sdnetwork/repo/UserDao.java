@@ -67,7 +67,12 @@ public class UserDao  {
 	
 	public User findByUsername(String username) {
 		Session sess = sessF.openSession();
+		try {
 		return sess.createQuery("from user where name = '"+username+"'", User.class).list().get(0);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }
