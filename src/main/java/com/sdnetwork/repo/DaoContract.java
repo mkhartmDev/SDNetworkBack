@@ -2,6 +2,9 @@ package com.sdnetwork.repo;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
+@Transactional
 public interface DaoContract <T, I> {
 
 	List<T> findAll();
