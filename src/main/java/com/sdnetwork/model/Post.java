@@ -8,7 +8,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -38,7 +40,7 @@ public class Post {
 	@Column(name="image_link")
 	private String imageLink;
 	
-	@OneToMany(mappedBy = "Post", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	@ManyToMany(mappedBy = "likes")
 	private Set<User> likedBy;
 	
 	public Post() {

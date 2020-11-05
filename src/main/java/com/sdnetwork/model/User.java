@@ -9,6 +9,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -40,7 +43,8 @@ public class User {
 	@OneToMany(mappedBy = "User", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private Set<Post> posts;
 	
-	@OneToMany(mappedBy = "User", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	@ManyToMany
+	@JoinTable(name="likes",joinColumns=@JoinColumn(name="user_id"),inverseJoinColumns=@JoinColumn(name="post_id"))
 	private Set<Post> likes;
 	
 	public User() {
