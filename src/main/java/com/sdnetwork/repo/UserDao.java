@@ -5,48 +5,60 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.sdnetwork.model.User;
-import com.sdnetwork.util.HibernateUtil;
 
 @Repository
 @Transactional
-public class UserDao implements DaoContract<User, Integer> {
+public class UserDao  {
+	
+	SessionFactory sessF;
 
-	@Override
-	public List<User> findAll() {
-
-		return HibernateUtil.getSessionFactory().openSession()
-				.createQuery("from ", User.class).list();
+	public UserDao() {
+		super();
+	}
+	
+	@Autowired
+	public UserDao(SessionFactory sessF) {
+		this.sessF = sessF;
 	}
 
-	@Override
+
+	public List<User> findAll() {
+
+		return sessF.openSession()
+				.createQuery("from User", User.class).list();
+	}
+
+
 	public User findById(Integer i) {
-		return HibernateUtil.getSessionFactory().openSession()
+		return sessF.openSession()
 				.createQuery("from User where user_id = "+ i +"", User.class).list().get(0);
 	}
 
-	@Override
+
 	public User update(User t) {
-		HibernateUtil.getSessionFactory().openSession().
+		sessF.getCurrentSession().
 			update(t);
 		return t;
 	}
 
-	@Override
+
 	public User save(User t) {
-		Session sess= HibernateUtil.getSessionFactory().openSession();
+		Session sess= sessF.openSession();
 		sess.save(t);
 		return t;
 	}
 
-	@Override
+
 	public User delete(Integer i) {
 
-		Session sess = HibernateUtil.getSessionFactory().openSession();
-		Transaction tx = sess.beginTransaction();
+		Session sess = sessF.getCurrentSession();
+//		Transaction tx = sess.beginTransaction();
 		User u = sess.get(User.class, i);
 		sess.delete(u);
 		
@@ -54,7 +66,7 @@ public class UserDao implements DaoContract<User, Integer> {
 	}
 	
 	public User findByUsername(String username) {
-		Session sess = HibernateUtil.getSessionFactory().openSession();
+		Session sess = sessF.openSession();
 		return sess.createQuery("from user where name = '"+username+"'", User.class).list().get(0);
 	}
 

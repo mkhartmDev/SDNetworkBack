@@ -163,4 +163,12 @@ public class User {
 		this.likes = likes;
 	}
 
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", username=" + username + ", password=" + password + ", email=" + email
+				+ ", firstName=" + firstName + ", lastName=" + lastName + ", pfpLink=" + pfpLink + "]";
+	}
+	
+	
+
 }
