@@ -14,52 +14,33 @@ public class UserDao implements DaoContract<User, Integer> {
 
 	@Override
 	public List<User> findAll() {
-		List<User> list = HibernateUtil.getSessionFactory().openSession()
-				.createNativeQuery("select * from user", User.class).list();
-		return list;
+
+		return HibernateUtil.getSessionFactory().openSession()
+				.createQuery("from ", User.class).list();
 	}
 
 	@Override
 	public User findById(Integer i) {
-		Session sess = HibernateUtil.getSessionFactory().openSession();
-		User u = sess.get(User.class, i);
-		return u;
+		return HibernateUtil.getSessionFactory().openSession()
+				.createQuery("from User where user_id = "+ i +"", User.class).list().get(0);
 	}
 
 	@Override
-	public User update(User u) {
-		Session sess;
-		Transaction tx=null;
-		try {
-		sess = HibernateUtil.getSessionFactory().openSession();
-		tx = sess.beginTransaction();
-		sess.update(u);
-		tx.commit();
-		}catch(Exception e) {
-			e.printStackTrace();
-			tx.rollback();
-		}
-		return u;
+	public User update(User t) {
+		HibernateUtil.getSessionFactory().openSession().
+			update(t);
+		return t;
 	}
 
 	@Override
-	public User save(User u) {
-		Session sess;
-		Transaction tx=null;
-		try {
-		sess = HibernateUtil.getSessionFactory().openSession();
-		tx = sess.beginTransaction();
-		sess.persist(u);
-		tx.commit();
-		}catch(Exception e) {
-			e.printStackTrace();
-			tx.rollback();
-		}
-		return u;
+	public User save(User t) {
+		HibernateUtil.getSessionFactory().openSession().save(t);
+		return t;
 	}
 
 	@Override
 	public User delete(Integer i) {
+
 		Session sess = HibernateUtil.getSessionFactory().openSession();
 		User u = sess.get(User.class, i);
 		sess.delete(u);
@@ -70,8 +51,5 @@ public class UserDao implements DaoContract<User, Integer> {
 		Session sess = HibernateUtil.getSessionFactory().openSession();
 		return sess.createQuery("from user where name = '"+username+"'", User.class).list().get(0);
 	}
-	
-	
-	
 
 }
