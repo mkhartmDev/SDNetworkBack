@@ -4,6 +4,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,6 +15,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+@Entity
 public class Post {
 	
 	@Id
@@ -21,9 +23,9 @@ public class Post {
 	@Column(name="post_id")
 	private int postId;
 	
-	@ManyToOne(cascade = CascadeType.REMOVE)
-	@JoinColumn(name="poster_id",referencedColumnName="UserId")
-	private int posterId;
+	@ManyToOne(targetEntity = User.class, cascade = CascadeType.REMOVE)
+	@JoinColumn(name="poster_id",referencedColumnName="user_id")
+	private User poster;
 	
 	@Column(name="post_text")
 	private String postText;
@@ -47,20 +49,19 @@ public class Post {
 		super();
 	}
 
-	public Post(int posterId, String postText, boolean isImagePost,
+	public Post(User poster, String postText, boolean isImagePost,
 			String imageLink) {
 		super();
-		this.posterId = posterId;
+		this.poster = poster;
 		this.postText = postText;
 		this.isImagePost = isImagePost;
 		this.imageLink = imageLink;
 	}
 
-	public Post(int postId, int posterId, String postText, int numberOfLikes, Timestamp dateTimePosted,
+	public Post(User poster, int posterId, String postText, int numberOfLikes, Timestamp dateTimePosted,
 			boolean isImagePost, String imageLink, Set<User> likedBy) {
 		super();
-		this.postId = postId;
-		this.posterId = posterId;
+		this.poster = poster;
 		this.postText = postText;
 		this.numberOfLikes = numberOfLikes;
 		this.dateTimePosted = dateTimePosted;
@@ -77,12 +78,12 @@ public class Post {
 		this.postId = postId;
 	}
 
-	public int getPosterId() {
-		return posterId;
+	public User getPosterId() {
+		return poster;
 	}
 
-	public void setPosterId(int posterId) {
-		this.posterId = posterId;
+	public void setPoster(User poster) {
+		this.poster = poster;
 	}
 
 	public String getPostText() {

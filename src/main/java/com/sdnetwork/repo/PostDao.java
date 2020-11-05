@@ -28,33 +28,15 @@ public class PostDao implements DaoContract<Post,Integer>{
 
 	@Override
 	public Post update(Post p) {
-		Session sess;
-		Transaction tx=null;
-		try {
-		sess = HibernateUtil.getSessionFactory().openSession();
-		tx = sess.beginTransaction();
+		Session sess = HibernateUtil.getSessionFactory().openSession();
 		sess.update(p);
-		tx.commit();
-		}catch(Exception e) {
-			e.printStackTrace();
-			tx.rollback();
-		}
 		return p;
 	}
 
 	@Override
 	public Post save(Post p) {
-		Session sess;
-		Transaction tx=null;
-		try {
-		sess = HibernateUtil.getSessionFactory().openSession();
-		tx = sess.beginTransaction();
+		Session sess = HibernateUtil.getSessionFactory().openSession();
 		sess.persist(p);
-		tx.commit();
-		}catch(Exception e) {
-			e.printStackTrace();
-			tx.rollback();
-		}
 		return p;
 	}
 
@@ -65,10 +47,6 @@ public class PostDao implements DaoContract<Post,Integer>{
 		sess.delete(p);
 		return p;
 	}
-	
-	public List<Post> findByUsername(String username) {
-		Session sess = HibernateUtil.getSessionFactory().openSession();
-		return sess.createQuery("from user where name = '"+username+"'", Post.class).list();
-	}
+
 
 }

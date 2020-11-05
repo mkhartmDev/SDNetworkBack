@@ -1,5 +1,7 @@
 package com.sdnetwork.model;
 
+
+
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -13,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+
 
 @Entity
 public class User {
@@ -40,11 +43,11 @@ public class User {
 	@Column(name="pfp_link")
 	private String pfpLink;
 	
-	@OneToMany(mappedBy = "User", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private Set<Post> posts;
 	
 	@ManyToMany
-	@JoinTable(name="likes",joinColumns=@JoinColumn(name="user_id"),inverseJoinColumns=@JoinColumn(name="post_id"))
+	@JoinTable(name="likes",joinColumns=@JoinColumn(name="post_id"),inverseJoinColumns=@JoinColumn(name="user_id"))
 	private Set<Post> likes;
 	
 	public User() {
@@ -142,6 +145,22 @@ public class User {
 
 	public void setPfpLink(String pfpLink) {
 		this.pfpLink = pfpLink;
+	}
+
+	public Set<Post> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(Set<Post> posts) {
+		this.posts = posts;
+	}
+
+	public Set<Post> getLikes() {
+		return likes;
+	}
+
+	public void setLikes(Set<Post> likes) {
+		this.likes = likes;
 	}
 
 }
