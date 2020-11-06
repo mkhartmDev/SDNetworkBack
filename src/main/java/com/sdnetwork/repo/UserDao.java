@@ -50,8 +50,11 @@ public class UserDao  {
 
 	public User save(User t) {
 		Session sess= sessF.openSession();
-		sess.save(t);
+		try{sess.save(t);
 		return t;
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 

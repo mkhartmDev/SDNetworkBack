@@ -13,7 +13,7 @@ import com.sdnetwork.service.UserService;
 
 @Controller
 @CrossOrigin
-@RequestMapping("/user.app")
+@RequestMapping("/user")
 public class UserController {
 	
 	UserService us;
@@ -28,7 +28,7 @@ public class UserController {
 		super();
 	}
 	
-	@PostMapping
+	@PostMapping("/new-user")
 	public @ResponseBody User createUser(@RequestBody User user) {
 		return us.createUser(user);
 	}
