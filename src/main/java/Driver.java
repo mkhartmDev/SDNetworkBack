@@ -11,7 +11,7 @@ public class Driver {
 
 	public static void main(String[] args) {
 		
-		ApplicationContext ac = new ClassPathXmlApplicationContext("config.xml");
+		ApplicationContext ac = new ClassPathXmlApplicationContext("classpath:/webapp/WEB-INF/applicationContext.xml");
 		UserDao ud = ac.getBean(UserDao.class);
 		User u = new User("cats", "q", "f", "d", "p", "q");
 
