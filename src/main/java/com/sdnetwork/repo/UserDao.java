@@ -2,11 +2,17 @@ package com.sdnetwork.repo;
 
 import java.util.List;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 
+import org.hibernate.Criteria;
+import org.hibernate.query.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -50,8 +56,11 @@ public class UserDao  {
 
 	public User save(User t) {
 		Session sess= sessF.openSession();
-		sess.save(t);
+		try{sess.save(t);
 		return t;
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 
@@ -65,14 +74,11 @@ public class UserDao  {
 		return u;
 	}
 	
+	
 	public User findByUsername(String username) {
-		Session sess = sessF.openSession();
-		try {
-		return sess.createQuery("from user where name = '"+username+"'", User.class).list().get(0);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
+
+		return sessF.getCurrentSession().createQuery("from User where username = '"+username+"'", User.class).list().get(0);
+
 	}
 
 }

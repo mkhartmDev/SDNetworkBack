@@ -1,5 +1,6 @@
 package com.sdnetwork.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +21,7 @@ public class LoginController {
 
 	public LoginService ss;
 	
+	@Autowired
 	public LoginController(LoginService ss) {
 		super();
 		this.ss = ss;
@@ -32,7 +34,6 @@ public class LoginController {
 
 	@PostMapping
 	public @ResponseBody User login(@RequestParam("username") String username, @RequestParam("password") String password) {
-	
 		return ss.getUser(username, password);
 
 	}

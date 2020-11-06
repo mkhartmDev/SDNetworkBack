@@ -25,7 +25,11 @@ public class UserService {
 	public User createUser(User user) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		user.setPassword(encoder.encode(user.getPassword()));
-		return ud.save(user);
+		user = ud.save(user);
+		if(user != null) {
+			user.setPassword(null);
+		}
+		return user;
 	}
 	
 	
