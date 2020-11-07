@@ -34,8 +34,9 @@ public class UserService {
 
 	public User updateUser(User user) {
 		User u = ud.findById(user.getUserId());
-
-		return null;
+		user.setPassword(u.getPassword());
+		ud.update(user);
+		return user;
 	}
 
 	public User getUserByUsername(String username) {

@@ -44,8 +44,8 @@ public class UserDao  {
 
 
 	public User update(User t) {
-		sessF.getCurrentSession().
-		merge(t);
+		Session sess = sessF.getCurrentSession();
+		sess.merge(t);
 		return t;
 	}
 
