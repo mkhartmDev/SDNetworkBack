@@ -6,7 +6,6 @@ import javax.transaction.Transactional;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -30,38 +29,50 @@ public class PostDao{
 
 
 	public List<Post> findAll() {
-		List<Post> list = sessF.openSession()
-				.createNativeQuery("select * from post", Post.class).list();
-		return list;
+		return sessF.getCurrentSession().createNativeQuery("select * from post", Post.class).list();
 	}
 
 
 	public Post findById(Integer i) {
-		Session sess = sessF.openSession();
+		Session sess = sessF.getCurrentSession();
 		Post p = sess.get(Post.class, i);
 		return p;
 	}
 
 
 	public Post update(Post p) {
-		Session sess = sessF.openSession();
+		Session sess = sessF.getCurrentSession();
 		sess.update(p);
 		return p;
 	}
 
 
 	public Post save(Post p) {
-		Session sess = sessF.openSession();
+		Session sess = sessF.getCurrentSession();
 		sess.persist(p);
 		return p;
 	}
 
 
 	public Post delete(Integer i) {
-		Session sess = sessF.openSession();
+		Session sess = sessF.getCurrentSession();
 		Post p = sess.get(Post.class, i);
 		sess.delete(p);
 		return p;
+	}
+	
+	public List<Post> findByUserId(int userId) {
+		try {
+		return sessF.getCurrentSession().createQuery("from Post where user_id = '"+userId+"'", Post.class).list();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public void addLike(int id) {
+		Session sess = sessF.getCurrentSession();
+		sess.createNativeQuery("update post set likes=likes+1 where post_id="+Integer.toString(id));
 	}
 
 
