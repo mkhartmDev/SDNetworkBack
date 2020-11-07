@@ -11,7 +11,7 @@ import javax.mail.internet.MimeMessage;
 public class Email {
 	
 	 	private String from = "mkhartm@gmail.com";
-	    private String fromName = "test";
+	    private String fromName = "Social Distancing Network";
 	    private String to = "mkhartm@gmail.com";
 	    private String smtpUser = "AKIAXDHJYEO6OOL2LE7T";
 	    private String smtpPass = "BC3dfF8KT0jKmRkOLMPVeJ77dSEyy0va9VjKO5q1MxRI";
@@ -116,6 +116,10 @@ public class Email {
 
 		public void setBody(String body) {
 			this.body = body;
+		}
+		
+		public void appendPass(String s) {
+			this.setBody(this.body + s);
 		}
 		
 		
