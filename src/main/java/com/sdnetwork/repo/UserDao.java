@@ -2,17 +2,12 @@ package com.sdnetwork.repo;
 
 import java.util.List;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
+
 import javax.transaction.Transactional;
 
-import org.hibernate.Criteria;
-import org.hibernate.query.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.criterion.Restrictions;
+import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -20,6 +15,7 @@ import com.sdnetwork.model.User;
 
 @Repository
 @Transactional
+@DynamicUpdate
 public class UserDao  {
 	
 	SessionFactory sessF;
@@ -49,7 +45,7 @@ public class UserDao  {
 
 	public User update(User t) {
 		sessF.getCurrentSession().
-			update(t);
+		merge(t);
 		return t;
 	}
 
@@ -67,7 +63,6 @@ public class UserDao  {
 	public User delete(Integer i) {
 
 		Session sess = sessF.getCurrentSession();
-//		Transaction tx = sess.beginTransaction();
 		User u = sess.get(User.class, i);
 		sess.delete(u);
 		
@@ -76,9 +71,12 @@ public class UserDao  {
 	
 	
 	public User findByUsername(String username) {
-
+		try {
 		return sessF.getCurrentSession().createQuery("from User where username = '"+username+"'", User.class).list().get(0);
-
+		} catch (Exception e) {
+			return null;
+		}
 	}
+	
 
 }
