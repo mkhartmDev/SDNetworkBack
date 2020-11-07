@@ -9,7 +9,7 @@ import com.sdnetwork.repo.UserDao;
 
 @Service
 public class UserService {
-	
+
 	UserDao ud;
 
 	@Autowired
@@ -26,13 +26,24 @@ public class UserService {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		user.setPassword(encoder.encode(user.getPassword()));
 		user = ud.save(user);
-		if(user != null) {
+		if (user != null) {
 			user.setPassword(null);
 		}
 		return user;
 	}
-	
-	
-	
 
+	public User updateUser(User user) {
+		User u = ud.findById(user.getUserId());
+		user.setPassword(u.getPassword());
+		ud.update(user);
+		return user;
+	}
+
+	public User getUserByUsername(String username) {
+		User user= ud.findByUsername(username);
+		user.setPassword(null);
+		return user;
+
+	}
+	
 }
