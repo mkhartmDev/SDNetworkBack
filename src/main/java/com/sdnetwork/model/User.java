@@ -49,7 +49,7 @@ public class User {
 	private Set<Post> posts;
 	
 	@ManyToMany
-	@JoinTable(name="likes",joinColumns=@JoinColumn(name="post_id"),inverseJoinColumns=@JoinColumn(name="user_id"))
+	 @JoinTable(name="likes",joinColumns=@JoinColumn(name="post_id"),inverseJoinColumns=@JoinColumn(name="user_id"))
 	private Set<Post> likes;
 	
 	public User() {
@@ -80,7 +80,7 @@ public class User {
 
 	
 	public User(int userId, String username, String password, String email, String firstName, String lastName,
-			String pfpLink, Set<Post> posts, Set<Post> likes) {
+			String pfpLink, Set<Post> posts) {
 		super();
 		this.userId = userId;
 		this.username = username;

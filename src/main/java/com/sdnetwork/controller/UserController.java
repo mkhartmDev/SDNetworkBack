@@ -46,6 +46,12 @@ public class UserController {
 		return us.getUserByUsername(username);
 	}
 	
-	
+
+	@PostMapping("/forgot")
+	public void ForgotPass(@RequestBody User user) throws Exception {
+		us.changePass(user.getUsername());
+	}
+
+
 
 }
