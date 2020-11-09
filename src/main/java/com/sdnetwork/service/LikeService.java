@@ -35,6 +35,7 @@ public class LikeService {
 		Set<User> likedBy=p.getLikedBy();
 		likedBy.add(u);
 		p.setLikedBy(likedBy);
+		p.setNumberOfLikes(p.getNumberOfLikes()+1);
 		pd.update(p);
 //		Set<Post> userLikes = u.getLikes();
 //		u.setLikes(userLikes);
@@ -48,6 +49,7 @@ public class LikeService {
 		Set<User> likedBy=p.getLikedBy();
 		likedBy.remove(u);
 		p.setLikedBy(likedBy);
+		p.setNumberOfLikes(p.getNumberOfLikes()-1);
 		pd.update(p);
 //		Set<Post> userLikes = u.getLikes();
 //		u.setLikes(userLikes);

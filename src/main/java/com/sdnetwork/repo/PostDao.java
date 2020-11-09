@@ -1,6 +1,8 @@
 package com.sdnetwork.repo;
 
+import java.sql.Timestamp;
 import java.util.List;
+import java.util.Set;
 
 import javax.transaction.Transactional;
 
@@ -9,7 +11,8 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.sdnetwork.model.Post;
+import com.sdnetwork.model.*;
+
 
 @Repository
 @Transactional
@@ -29,7 +32,7 @@ public class PostDao{
 
 
 	public List<Post> findAll() {
-		return sessF.getCurrentSession().createNativeQuery("select * from post", Post.class).list();
+		return sessF.openSession().createNativeQuery("select * from post", Post.class).list();
 	}
 
 
@@ -48,6 +51,8 @@ public class PostDao{
 
 
 	public Post save(Post p) {
+		Timestamp now = new Timestamp(System.currentTimeMillis());
+		p.setDateTimePosted(now);
 		Session sess = sessF.getCurrentSession();
 		sess.persist(p);
 		return p;
