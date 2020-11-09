@@ -7,10 +7,16 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.sdnetwork.model.User;
 import com.sdnetwork.repo.UserDao;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
 public class Driver {
 
 	public static void main(String[] args) {
-		
+
 		ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
 		UserDao ud = ac.getBean(UserDao.class);
 		User u = new User("cats", "q", "f", "d", "p", "q");
@@ -22,7 +28,7 @@ public class Driver {
 //		u.setLastName("iaf");
 //		System.out.println(ud.update(u));
 //		System.out.println(ud.delete(u.getUserId()));
-//		
+//
 //		((ConfigurableApplicationContext)ac).close();
 		System.out.println(ud.findByUsername("notreal"));
 
