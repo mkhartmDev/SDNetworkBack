@@ -40,6 +40,7 @@ public class Driver {
 		User u = ud.findById(1);
 		Post p = new Post(u,"a",false,"a");
 		ps.createNew(p);
+		((ConfigurableApplicationContext)ac).close();
 		
 
 
