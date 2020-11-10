@@ -1,5 +1,6 @@
 package com.sdnetwork.controller;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,9 @@ public class PostController {
 	
 	@GetMapping("/all")
 	public @ResponseBody List<Post> getAllPosts() {
-		return ps.getAll();
+		List<Post> posts = ps.getAll();
+		System.out.println(Arrays.toString(posts.toArray()));
+		return posts;
 		
 	}
 	
