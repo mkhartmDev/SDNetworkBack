@@ -44,15 +44,12 @@ public class PostService {
 	}
 	
 	public static Post sanitize(Post p) {
-		Set<User> likedBy = p.getLikedBy();
-		likedBy.forEach(user->{
-		user.setPassword(null);
-		user.setLikes(null);
-		user.setEmail(null);
-		user.setPfpLink(null);
-		user.setPosts(null);
-		});
-		p.setLikedBy(likedBy);
+		User u = p.getPoster();
+		u.setLikes(null);
+		u.setPassword(null);
+		u.setPosts(null);
+		u.setEmail(null);
+		p.setPoster(u);
 		return p;
 	}
 

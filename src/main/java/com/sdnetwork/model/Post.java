@@ -9,11 +9,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Post {
@@ -23,7 +21,7 @@ public class Post {
 	@Column(name="post_id")
 	private int postId;
 	
-	@ManyToOne(targetEntity = User.class, cascade = CascadeType.REMOVE)
+	@ManyToOne(fetch = FetchType.EAGER,targetEntity = User.class, cascade = CascadeType.REMOVE)
 	@JoinColumn(name="poster_id",referencedColumnName="user_id")
 	private User poster;
 	
@@ -42,7 +40,7 @@ public class Post {
 	@Column(name="image_link")
 	private String imageLink;
 	
-	@ManyToMany(mappedBy = "likes")
+	@ManyToMany(fetch = FetchType.LAZY,mappedBy = "likes")
 	private Set<User> likedBy;
 	
 	public Post() {
@@ -58,7 +56,7 @@ public class Post {
 		this.imageLink = imageLink;
 	}
 
-	public Post(User poster, int posterId, String postText, int numberOfLikes, Timestamp dateTimePosted,
+	public Post(User poster, String postText, int numberOfLikes, Timestamp dateTimePosted,
 			boolean isImagePost, String imageLink, Set<User> likedBy) {
 		super();
 		this.poster = poster;
@@ -78,7 +76,7 @@ public class Post {
 		this.postId = postId;
 	}
 
-	public User getPosterId() {
+	public User getPoster() {
 		return poster;
 	}
 
