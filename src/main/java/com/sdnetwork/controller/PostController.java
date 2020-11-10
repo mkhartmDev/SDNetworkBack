@@ -35,9 +35,7 @@ public class PostController {
 	
 	@GetMapping("/all")
 	public @ResponseBody List<Post> getAllPosts() {
-		List<Post> posts = ps.getAll();
-		System.out.println(Arrays.toString(posts.toArray()));
-		return posts;
+		return ps.getAll();
 		
 	}
 	
