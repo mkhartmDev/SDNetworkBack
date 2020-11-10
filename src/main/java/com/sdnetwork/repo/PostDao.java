@@ -68,7 +68,7 @@ public class PostDao{
 	
 	public List<Post> findByUserId(int userId) {
 		try {
-		return sessF.getCurrentSession().createQuery("from Post where user_id = '"+userId+"'", Post.class).list();
+		return sessF.getCurrentSession().createQuery("from Post where user_id = "+userId, Post.class).list();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
