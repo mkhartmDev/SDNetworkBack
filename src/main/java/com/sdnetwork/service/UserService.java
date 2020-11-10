@@ -42,11 +42,12 @@ public class UserService {
 
 	public User getUserByUsername(String username) {
 		User user= ud.findByUsername(username);
-		// user.setPassword(null);
+		user.setPassword(null);
 		return user;
-
 	}
-	
+
+
+
 	public User changePass(String username) throws Exception {
 		User user= ud.findByUsername(username);
 		long rando = (long) Math.floor(Math.random() * 9_000_000_000L) + 1_000_000_000L;

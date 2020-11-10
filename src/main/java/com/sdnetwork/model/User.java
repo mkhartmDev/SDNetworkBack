@@ -80,7 +80,7 @@ public class User {
 
 	
 	public User(int userId, String username, String password, String email, String firstName, String lastName,
-			String pfpLink, Set<Post> posts) {
+			String pfpLink, Set<Post> posts,Set<Post> likes) {
 		super();
 		this.userId = userId;
 		this.username = username;
