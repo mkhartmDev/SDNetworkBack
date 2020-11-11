@@ -3,14 +3,12 @@ package com.sdnetwork.service;
 import com.sdnetwork.repo.PostDao;
 
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sdnetwork.dto.RestPost;
 import com.sdnetwork.model.Post;
-import com.sdnetwork.model.User;
 
 @Service
 public class PostService {
@@ -34,7 +32,6 @@ public class PostService {
 	}
 	
 	public List<RestPost> getById(int i){
-		List<RestPost> userPosts = pd.findByUserId(i);
 		return pd.findByUserId(i);
 	}
 
