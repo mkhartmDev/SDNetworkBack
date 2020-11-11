@@ -26,6 +26,11 @@ import com.sdnetwork.model.*;
 public class PostDao{
 	
 	SessionFactory sessF;
+	
+	private final String baseString = "select new com.sdnetwork.dto.RestPost("
+			+ "u.username, u.firstName, u.lastName, p.postText, p.imageLink, p.dateTimePosted, p.numLikes, p.postId, p.isImagePost)"
+			+ "from Post p join User u on "
+			+ "p.posterId = u.userId";
 
 	public PostDao() {
 		super();
@@ -41,25 +46,10 @@ public class PostDao{
 	public List<RestPost> findAll() {
 //		return sessF.openSession().createNativeQuery("select * from post", Post.class).list();
 		Session sess = sessF.getCurrentSession();
-		TypedQuery<RestPost> q = sess.createQuery(
-				"select new com.sdnetwork.dto.RestPost("
-				+ "u.username, u.firstName, u.lastName, p.postText, p.imageLink, p.dateTimePosted, p.numLikes, p.postId, p.isImagePost)"
-				+ "from Post p join User u on "
-				+ "p.posterId = u.userId",
-				RestPost.class
-				);
+		TypedQuery<RestPost> q = sess.createQuery(baseString,RestPost.class);
 		List<RestPost> p = q.getResultList();
 		return p;
-		
-//		TypedQuery<BookWithAuthorNames> q = em.createQuery(
-//		        "SELECT new org.thoughts.on.java.model.BookWithAuthorNames(b.id, b.title, b.price, concat(a.firstName, ' ', a.lastName)) FROM Book b JOIN b.author a WHERE b.title LIKE :title",
-//		        BookWithAuthorNames.class);
-//		q.setParameter("title", "%Hibernate Tips%");
-//		List<BookWithAuthorNames> books = q.getResultList();
-//		 
-//		for (BookWithAuthorNames b : books) {
-//		    log.info(b);
-//		}
+
 	}
 
 
