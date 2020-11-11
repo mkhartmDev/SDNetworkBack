@@ -1,6 +1,6 @@
 package com.sdnetwork.controller;
 
-import java.util.Arrays;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +50,6 @@ public class PostController {
 	
 	@PostMapping("/new")
 	public @ResponseBody Post createNewPost(@RequestBody Post p) {
-		System.out.println(p);
 		return ps.createNew(p);
 	}
 	
