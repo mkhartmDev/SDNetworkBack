@@ -8,6 +8,8 @@ import com.sdnetwork.email.Email;
 import com.sdnetwork.model.User;
 import com.sdnetwork.repo.UserDao;
 
+import java.util.List;
+
 @Service
 public class UserService {
 
@@ -58,6 +60,10 @@ public class UserService {
 		email.send();
 		return user;
 
+	}
+	
+	public List<User> getAllUsers() {
+		return ud.findAll();
 	}
 	
 }
