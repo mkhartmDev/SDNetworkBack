@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.sdnetwork.dto.RestPost;
 import com.sdnetwork.model.Post;
 import com.sdnetwork.service.PostService;
 
@@ -33,7 +34,7 @@ public class PostController {
 	}
 	
 	@GetMapping("/all")
-	public @ResponseBody List<Post> getAllPosts() {
+	public @ResponseBody List<RestPost> getAllPosts() {
 		return ps.getAll();
 		
 	}

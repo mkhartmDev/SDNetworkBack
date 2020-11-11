@@ -8,6 +8,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.sdnetwork.dto.RestPost;
 import com.sdnetwork.model.Post;
 import com.sdnetwork.model.User;
 
@@ -26,8 +27,8 @@ public class PostService {
 		this(new PostDao());
 	}
 
-	public List<Post> getAll() {
-		List<Post> allPosts = pd.findAll();
+	public List<RestPost> getAll() {
+		List<RestPost> allPosts = pd.findAll();
 		return allPosts;
 		
 	}
