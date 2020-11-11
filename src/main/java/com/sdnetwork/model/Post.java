@@ -2,16 +2,14 @@ package com.sdnetwork.model;
 import java.sql.Timestamp;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 
 @Entity
 public class Post {
@@ -46,19 +44,20 @@ public class Post {
 		super();
 	}
 
-	public Post(int postId, int userId, String postText, int numberOfLikes, Timestamp dateTimePosted,
-			boolean isImagePost, String imageLink, Set<User> likedBy) {
+
+	public Post(int postId, int posterId, String postText, int numLikes, Timestamp dateTimePosted, boolean isImagePost,
+			String imageLink, Set<User> likedBy) {
 		super();
 		this.postId = postId;
-		this.posterId = userId;
+		this.posterId = posterId;
 		this.postText = postText;
-		this.numLikes = numberOfLikes;
+		this.numLikes = numLikes;
 		this.dateTimePosted = dateTimePosted;
 		this.isImagePost = isImagePost;
 		this.imageLink = imageLink;
 		this.likedBy = likedBy;
 	}
-	
+
 	public int getPostId() {
 		return postId;
 	}
@@ -122,14 +121,16 @@ public class Post {
 	public void setLikedBy(Set<User> likedBy) {
 		this.likedBy = likedBy;
 	}
-	
+
+
 	@Override
 	public String toString() {
-		return "Post [postId=" + postId + ", userId=" + posterId + ", postText=" + postText + ", numberOfLikes="
-				+ numLikes + ", dateTimePosted=" + dateTimePosted + ", isImagePost=" + isImagePost + ", imageLink="
-				+ imageLink + ", likedBy=" + likedBy + "]";
+		return "Post [postId=" + postId + ", posterId=" + posterId + ", postText=" + postText + ", numLikes=" + numLikes
+				+ ", dateTimePosted=" + dateTimePosted + ", isImagePost=" + isImagePost + ", imageLink=" + imageLink
+				+ ", likedBy=" + likedBy + "]";
 	}
 
+	
 
 	
 }

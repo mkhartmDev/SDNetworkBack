@@ -8,6 +8,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.sdnetwork.dto.RestLike;
 import com.sdnetwork.dto.RestPost;
 import com.sdnetwork.model.*;
 
@@ -30,32 +31,12 @@ public class LikeService {
 	}
 	
 	
-	public void addLike(int userId,int postId) {
-//		RestPost p = pd.findById(postId);
-//		User u = ud.findById(userId);
-//		Set<User> likedBy=p.getLikedBy();
-//		likedBy.add(u);
-//		p.setLikedBy(likedBy);
-//		p.setNumberOfLikes(p.getNumberOfLikes()+1);
-//		pd.update(p);
-//		Set<Post> userLikes = u.getLikes();
-//		u.setLikes(userLikes);
-//		userLikes.add(p);
-//		ud.update(u);
-		
+	public void addLike(RestLike like) {
+			
+		pd.addLike(like);
 	}
-	public void removeLike(int userId,int postId) {
-//		Post p = pd.findById(postId);
-//		User u = ud.findById(userId);
-//		Set<User> likedBy=p.getLikedBy();
-//		likedBy.remove(u);
-//		p.setLikedBy(likedBy);
-//		p.setNumberOfLikes(p.getNumberOfLikes()-1);
-//		pd.update(p);
-//		Set<Post> userLikes = u.getLikes();
-//		u.setLikes(userLikes);
-//		userLikes.add(p);
-//		ud.update(u);
+	public void removeLike(RestLike like) {
+		pd.removeLike(like);
 	}
 
 }

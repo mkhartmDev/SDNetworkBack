@@ -17,6 +17,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.sdnetwork.dto.RestLike;
 import com.sdnetwork.dto.RestPost;
 import com.sdnetwork.model.*;
 
@@ -99,9 +100,23 @@ public class PostDao{
 		}
 	}
 
-	public void addLike(int id) {
+	public void addLike(RestLike like) {
 		Session sess = sessF.getCurrentSession();
-		sess.createNativeQuery("update post set likes=likes+1 where post_id="+Integer.toString(id));
+		sess.createNativeQuery("update post set likes=likes+1 where post_id="+ like.getPostId());
+		try {
+		sess.createNativeQuery("insert into likes values (" + like.getPostId() +", "+ like.getUserId() + ")");	
+		} catch (Exception e) {
+
+		}
+	}
+	public void removeLike(RestLike like) {
+		Session sess = sessF.getCurrentSession();
+		sess.createNativeQuery("update post set likes=likes-1 where post_id="+ like.getPostId());
+		try {
+		sess.createNativeQuery("delete from likes where post_id = " + like.getPostId() +" and user_id = "+ like.getUserId());	
+		} catch (Exception e) {
+
+		}
 	}
 
 
