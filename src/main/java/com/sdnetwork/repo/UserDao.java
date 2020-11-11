@@ -78,5 +78,13 @@ public class UserDao  {
 		}
 	}
 	
+	public User findByEmail(String email) {
+		try {
+		return sessF.openSession().createQuery("from User where email = '"+email+"'", User.class).list().get(0);
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
 
 }

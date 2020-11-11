@@ -34,12 +34,14 @@ public class PostController {
 		this(new PostService());
 	}
 	
+
 	@GetMapping("/all")
 	public @ResponseBody List<RestPost> getAllPosts() {
 		return ps.getAll();
 		
 	}
 	
+
 	@GetMapping("/userid/{id}")
 	public @ResponseBody List<RestPost> getPostsByUserId(@PathVariable("id") int id){
 		return ps.getById(id);
@@ -47,8 +49,9 @@ public class PostController {
 	}
 	
 	@PostMapping("/new")
-	public void createNewPost(@RequestBody Post p) {
-		ps.createNew(p);
+	public @ResponseBody Post createNewPost(@RequestBody Post p) {
+		return ps.createNew(p);
+		
 		
 	}
 	

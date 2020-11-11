@@ -38,8 +38,8 @@ public class PostService {
 		return pd.findByUserId(i);
 	}
 
-	public void createNew(Post p) {
-		pd.save(p);
+	public Post createNew(Post p) {
+		return pd.save(p);
 	}
 	
 
