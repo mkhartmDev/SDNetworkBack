@@ -21,9 +21,8 @@ public class Post {
 	@Column(name="post_id")
 	private int postId;
 	
-	@ManyToOne(fetch = FetchType.EAGER,targetEntity = User.class, cascade = CascadeType.REMOVE)
-	@JoinColumn(name="poster_id",referencedColumnName="user_id")
-	private User poster;
+	@Column(name="poster_id")
+	private int posterId;
 	
 	@Column(name="post_text")
 	private String postText;
@@ -47,19 +46,11 @@ public class Post {
 		super();
 	}
 
-	public Post(User poster, String postText, boolean isImagePost,
-			String imageLink) {
-		super();
-		this.poster = poster;
-		this.postText = postText;
-		this.isImagePost = isImagePost;
-		this.imageLink = imageLink;
-	}
-
-	public Post(User poster, String postText, int numberOfLikes, Timestamp dateTimePosted,
+	public Post(int postId, int posterId, String postText, int numberOfLikes, Timestamp dateTimePosted,
 			boolean isImagePost, String imageLink, Set<User> likedBy) {
 		super();
-		this.poster = poster;
+		this.postId = postId;
+		this.posterId = posterId;
 		this.postText = postText;
 		this.numberOfLikes = numberOfLikes;
 		this.dateTimePosted = dateTimePosted;
@@ -76,12 +67,12 @@ public class Post {
 		this.postId = postId;
 	}
 
-	public User getPoster() {
-		return poster;
+	public int getPosterId() {
+		return posterId;
 	}
 
-	public void setPoster(User poster) {
-		this.poster = poster;
+	public void setPosterId(int posterId) {
+		this.posterId = posterId;
 	}
 
 	public String getPostText() {
@@ -132,5 +123,12 @@ public class Post {
 		this.likedBy = likedBy;
 	}
 
+	@Override
+	public String toString() {
+		return "Post [postId=" + postId + ", posterId=" + posterId + ", postText=" + postText + ", numberOfLikes="
+				+ numberOfLikes + ", dateTimePosted=" + dateTimePosted + ", isImagePost=" + isImagePost + ", imageLink="
+				+ imageLink + ", likedBy=" + likedBy + "]";
+	}
 
+	
 }
