@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -91,7 +92,7 @@ public class PostDao{
 		try {
 		//return sessF.getCurrentSession().createQuery("from Post where user_id = "+userId, Post.class).list();
 		Session sess = sessF.getCurrentSession();
-		TypedQuery<RestPost> q = sess.createQuery(baseString + "where posterId =" + userId + "",RestPost.class);
+		TypedQuery<RestPost> q = sess.createQuery(baseString + "where poster_id =" + userId + "",RestPost.class);
 		List<RestPost> p = q.getResultList();
 		return p;
 		} catch (Exception e) {
@@ -102,20 +103,18 @@ public class PostDao{
 
 	public void addLike(RestLike like) {
 		Session sess = sessF.getCurrentSession();
-		sess.createNativeQuery("update post set likes=likes+1 where post_id="+ like.getPostId());
-		try {
-		sess.createNativeQuery("insert into likes values (" + like.getPostId() +", "+ like.getUserId() + ")");	
-		} catch (Exception e) {
-
+		Query q = sess.createNativeQuery("insert into likes values (" + Integer.toString(like.getPostId()) +", "+ Integer.toString(like.getUserId()) + ")");	
+		int y = q.executeUpdate();
+		if(y != 0) {
+		sess.createNativeQuery("update post set number_of_likes=number_of_likes+1 where post_id="+ like.getPostId()).executeUpdate();
 		}
 	}
 	public void removeLike(RestLike like) {
 		Session sess = sessF.getCurrentSession();
-		sess.createNativeQuery("update post set likes=likes-1 where post_id="+ like.getPostId());
-		try {
-		sess.createNativeQuery("delete from likes where post_id = " + like.getPostId() +" and user_id = "+ like.getUserId());	
-		} catch (Exception e) {
-
+		Query q = sess.createNativeQuery("delete from likes where post_id = " + Integer.toString(like.getPostId()) +" and user_id = "+ Integer.toString(like.getUserId()));	
+		int y = q.executeUpdate();
+		if(y != 0) {
+		sess.createNativeQuery("update post set number_of_likes=number_of_likes-1 where post_id="+ like.getPostId()).executeUpdate();
 		}
 	}
 

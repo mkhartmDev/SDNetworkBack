@@ -34,13 +34,14 @@ public class LikeController {
 	
 	@PostMapping("/add")
 	public @ResponseBody void addLike(@RequestBody RestLike like) {
+		System.out.println(like);
 		ls.addLike(like);
 		
 	}
 	
 	@PostMapping("/remove")
 	public @ResponseBody void removeLike(@RequestBody RestLike like) {
-
+		System.out.println(like);
 		ls.removeLike(like);
 	}
 
