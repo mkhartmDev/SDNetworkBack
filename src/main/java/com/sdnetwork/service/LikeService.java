@@ -36,17 +36,7 @@ public class LikeService {
 		pd.addLike(like);
 	}
 	public void removeLike(RestLike like) {
-//		Post p = pd.findById(postId);
-//		User u = ud.findById(userId);
-//		Set<User> likedBy=p.getLikedBy();
-//		likedBy.remove(u);
-//		p.setLikedBy(likedBy);
-//		p.setNumberOfLikes(p.getNumberOfLikes()-1);
-//		pd.update(p);
-//		Set<Post> userLikes = u.getLikes();
-//		u.setLikes(userLikes);
-//		userLikes.add(p);
-//		ud.update(u);
+		pd.removeLike(like);
 	}
 
 }

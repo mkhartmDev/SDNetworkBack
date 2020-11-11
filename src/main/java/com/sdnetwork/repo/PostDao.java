@@ -112,7 +112,7 @@ public class PostDao{
 		Session sess = sessF.getCurrentSession();
 		sess.createNativeQuery("update post set likes=likes-1 where post_id="+ like.getPostId());
 		try {
-		sess.createNativeQuery("insert into likes values (" + like.getPostId() +", "+ like.getUserId() + ")");	
+		sess.createNativeQuery("delete from likes where post_id = " + like.getPostId() +" and user_id = "+ like.getUserId());	
 		} catch (Exception e) {
 
 		}
