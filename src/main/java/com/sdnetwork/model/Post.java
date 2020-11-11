@@ -28,7 +28,7 @@ public class Post {
 	private String postText;
 	
 	@Column(name="number_of_likes")
-	private int numberOfLikes;
+	private int numLikes;
 	
 	@Column(name="date_time_posted", nullable=false)
 	private Timestamp dateTimePosted;
@@ -46,13 +46,13 @@ public class Post {
 		super();
 	}
 
-	public Post(int postId, int posterId, String postText, int numberOfLikes, Timestamp dateTimePosted,
+	public Post(int postId, int userId, String postText, int numberOfLikes, Timestamp dateTimePosted,
 			boolean isImagePost, String imageLink, Set<User> likedBy) {
 		super();
 		this.postId = postId;
-		this.posterId = posterId;
+		this.posterId = userId;
 		this.postText = postText;
-		this.numberOfLikes = numberOfLikes;
+		this.numLikes = numberOfLikes;
 		this.dateTimePosted = dateTimePosted;
 		this.isImagePost = isImagePost;
 		this.imageLink = imageLink;
@@ -67,12 +67,12 @@ public class Post {
 		this.postId = postId;
 	}
 
-	public int getPosterId() {
+	public int getUserId() {
 		return posterId;
 	}
 
-	public void setPosterId(int posterId) {
-		this.posterId = posterId;
+	public void setUserId(int userId) {
+		this.posterId = userId;
 	}
 
 	public String getPostText() {
@@ -84,11 +84,11 @@ public class Post {
 	}
 
 	public int getNumberOfLikes() {
-		return numberOfLikes;
+		return numLikes;
 	}
 
 	public void setNumberOfLikes(int numberOfLikes) {
-		this.numberOfLikes = numberOfLikes;
+		this.numLikes = numberOfLikes;
 	}
 
 	public Timestamp getDateTimePosted() {
@@ -125,10 +125,11 @@ public class Post {
 
 	@Override
 	public String toString() {
-		return "Post [postId=" + postId + ", posterId=" + posterId + ", postText=" + postText + ", numberOfLikes="
-				+ numberOfLikes + ", dateTimePosted=" + dateTimePosted + ", isImagePost=" + isImagePost + ", imageLink="
+		return "Post [postId=" + postId + ", userId=" + posterId + ", postText=" + postText + ", numberOfLikes="
+				+ numLikes + ", dateTimePosted=" + dateTimePosted + ", isImagePost=" + isImagePost + ", imageLink="
 				+ imageLink + ", likedBy=" + likedBy + "]";
 	}
+
 
 	
 }

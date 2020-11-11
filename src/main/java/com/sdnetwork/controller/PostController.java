@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.sdnetwork.dto.RestPost;
 import com.sdnetwork.model.Post;
 import com.sdnetwork.service.PostService;
 
 @Controller
 @CrossOrigin
+@RequestMapping("/posts")
 public class PostController {
 	
 	private PostService ps;
@@ -32,19 +34,21 @@ public class PostController {
 		this(new PostService());
 	}
 	
-	@GetMapping("/posts/all")
-	public @ResponseBody List<Post> getAllPosts() {
+
+	@GetMapping("/all")
+	public @ResponseBody List<RestPost> getAllPosts() {
 		return ps.getAll();
 		
 	}
 	
-	@GetMapping("/posts/userid/{id}")
-	public @ResponseBody List<Post> getPostsByUserId(@PathVariable("id") int id){
+
+	@GetMapping("/userid/{id}")
+	public @ResponseBody List<RestPost> getPostsByUserId(@PathVariable("id") int id){
 		return ps.getById(id);
 	
 	}
 	
-	@PostMapping("/posts/new")
+	@PostMapping("/new")
 	public @ResponseBody Post createNewPost(@RequestBody Post p) {
 		return ps.createNew(p);
 		
