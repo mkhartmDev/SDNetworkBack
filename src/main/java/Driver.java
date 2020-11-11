@@ -1,13 +1,10 @@
 
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.support.FileSystemXmlApplicationContext;
+import java.util.LinkedList;
+import java.util.List;
 
-import com.sdnetwork.model.Post;
 import com.sdnetwork.model.User;
 import com.sdnetwork.repo.UserDao;
-import com.sdnetwork.service.PostService;
 
 
 public class Driver {
@@ -23,17 +20,21 @@ public class Driver {
 //
 //		((ConfigurableApplicationContext)ac).close();
 //		System.out.println(ud.findByUsername("notreal"));
-		ApplicationContext ac =
-			    new FileSystemXmlApplicationContext(
-			        "src/main/webapp/WEB-INF/applicationContext.xml"
-			    );
+	//	ApplicationContext ac =
+	//		    new FileSystemXmlApplicationContext(
+	//		        "src/main/webapp/WEB-INF/applicationContext.xml"
+	//		    );
 		
-		PostService ps = ac.getBean(PostService.class);
-		UserDao ud = ac.getBean(UserDao.class);
-		User u = ud.findById(1);
+	//	PostService ps = ac.getBean(PostService.class);
+	//	UserDao ud = ac.getBean(UserDao.class);
+		UserDao ud= new UserDao();
+		List<User> li = new LinkedList<User>();
+		li = ud.findAll();
+		System.out.println(li.get(0).getEmail());
+//		User u = ud.findById(1);
 //		Post p = new Post(u,"a",false,"a");
 //		ps.createNew(p);
-		((ConfigurableApplicationContext)ac).close();
+//		((ConfigurableApplicationContext)ac).close();
 		
 
 

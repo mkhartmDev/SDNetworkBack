@@ -1,5 +1,7 @@
 package com.sdnetwork.service;
 
+import java.net.URLEncoder;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -50,16 +52,25 @@ public class UserService {
 
 
 
-	public User changePass(String username) throws Exception {
-		User user= ud.findByUsername(username);
+	public User changePass(String email) throws Exception {
+		 @SuppressWarnings("deprecation")
+		String email2 = java.net.URLDecoder.decode(email);
+		email2 = email2.replaceAll("=", "");
+		User user= ud.findByEmail(email2);
 		long rando = (long) Math.floor(Math.random() * 9_000_000_000L) + 1_000_000_000L;
 		String tempPass = String.valueOf(rando);
-		user.setPassword(tempPass);
-		Email email = new Email("mhartmanndev@gmail.com");
-		email.appendPass(tempPass);
-		email.send();
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		user.setPassword(encoder.encode(tempPass));
+		user = ud.update(user);
+		Email emailObj = new Email(email2);
+		emailObj.appendPass(tempPass);
+		emailObj.send();
+		user.getPassword();
 		return user;
-
+	}
+	
+	public User findByEmail(String email) {
+		return ud.findByEmail(email);
 	}
 	
 	public List<User> getAllUsers() {
