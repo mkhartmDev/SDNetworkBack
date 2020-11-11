@@ -54,6 +54,11 @@ public class UserController {
 		return us.changePass(email);
 	}
 	
+	@PostMapping("/changepass")
+	public @ResponseBody User changePasswordSettings(@RequestBody User user) throws Exception {
+		return us.changePassSettings(user);
+	}
+	
 	
 
 	@GetMapping("/all")
