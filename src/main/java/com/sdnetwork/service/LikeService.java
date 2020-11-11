@@ -1,7 +1,7 @@
 package com.sdnetwork.service;
 
 import com.sdnetwork.repo.PostDao;
-import com.sdnetwork.repo.UserDao;
+import com.sdnetwork.repo.UserDaoTest;
 
 import java.util.Set;
 
@@ -15,19 +15,19 @@ import com.sdnetwork.model.*;
 @Service
 public class LikeService {
 	private PostDao pd;
-	private UserDao ud;
+	private UserDaoTest ud;
 	
 	
 	
 	@Autowired
-	public LikeService(PostDao pd, UserDao ud) {
+	public LikeService(PostDao pd, UserDaoTest ud) {
 		super();
 		this.pd = pd;
 		this.ud = ud;
 	}
 	
 	public LikeService() {
-		this(new PostDao(),new UserDao());
+		this(new PostDao(),new UserDaoTest());
 	}
 	
 	

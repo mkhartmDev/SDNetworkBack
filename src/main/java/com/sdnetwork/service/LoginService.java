@@ -5,21 +5,21 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.sdnetwork.model.User;
-import com.sdnetwork.repo.UserDao;
+import com.sdnetwork.repo.UserDaoTest;
 
 @Service
 public class LoginService {
 	
-	public UserDao ud;
+	public UserDaoTest ud;
 	
 	@Autowired
-	public LoginService(UserDao ud) {
+	public LoginService(UserDaoTest ud) {
 		this.ud = ud;
 		
 	}
 	
 	public LoginService() {
-		this(new UserDao());
+		this(new UserDaoTest());
 	}
 
 	public User getUser(String username, String password) {
