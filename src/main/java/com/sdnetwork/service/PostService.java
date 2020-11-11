@@ -28,14 +28,12 @@ public class PostService {
 
 	public List<Post> getAll() {
 		List<Post> allPosts = pd.findAll();
-		allPosts.forEach(PostService::sanitize);
 		return allPosts;
 		
 	}
 	
 	public List<Post> getById(int i){
 		List<Post> userPosts = pd.findByUserId(i);
-		userPosts.forEach(PostService::sanitize);
 		return pd.findByUserId(i);
 	}
 
@@ -43,18 +41,7 @@ public class PostService {
 		pd.save(p);
 	}
 	
-	public static Post sanitize(Post p) {
-		Set<User> likedBy = p.getLikedBy();
-		likedBy.forEach(user->{
-		user.setPassword(null);
-		user.setLikes(null);
-		user.setEmail(null);
-		user.setPfpLink(null);
-		user.setPosts(null);
-		});
-		p.setLikedBy(likedBy);
-		return p;
-	}
+
 
 	
 

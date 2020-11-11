@@ -31,8 +31,8 @@ public class Driver {
 		PostService ps = ac.getBean(PostService.class);
 		UserDao ud = ac.getBean(UserDao.class);
 		User u = ud.findById(1);
-		Post p = new Post(u,"a",false,"a");
-		ps.createNew(p);
+//		Post p = new Post(u,"a",false,"a");
+//		ps.createNew(p);
 		((ConfigurableApplicationContext)ac).close();
 		
 

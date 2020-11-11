@@ -45,10 +45,11 @@ public class User {
 	@Column(name="pfp_link")
 	private String pfpLink;
 	
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	@JoinColumn(name="poster_id")
 	private Set<Post> posts;
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.LAZY)
 	 @JoinTable(name="likes",joinColumns=@JoinColumn(name="post_id"),inverseJoinColumns=@JoinColumn(name="user_id"))
 	private Set<Post> likes;
 	
