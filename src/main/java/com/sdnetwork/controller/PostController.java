@@ -41,7 +41,7 @@ public class PostController {
 	}
 	
 	@GetMapping("/userid/{id}")
-	public @ResponseBody List<Post> getPostsByUserId(@PathVariable("id") int id){
+	public @ResponseBody List<RestPost> getPostsByUserId(@PathVariable("id") int id){
 		return ps.getById(id);
 	
 	}

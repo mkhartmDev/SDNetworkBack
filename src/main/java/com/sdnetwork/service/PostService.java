@@ -33,8 +33,8 @@ public class PostService {
 		
 	}
 	
-	public List<Post> getById(int i){
-		List<Post> userPosts = pd.findByUserId(i);
+	public List<RestPost> getById(int i){
+		List<RestPost> userPosts = pd.findByUserId(i);
 		return pd.findByUserId(i);
 	}
 

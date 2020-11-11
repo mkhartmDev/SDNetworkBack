@@ -30,7 +30,7 @@ public class PostDao{
 	private final String baseString = "select new com.sdnetwork.dto.RestPost("
 			+ "u.username, u.firstName, u.lastName, p.postText, p.imageLink, p.dateTimePosted, p.numLikes, p.postId, p.isImagePost)"
 			+ "from Post p join User u on "
-			+ "p.posterId = u.userId";
+			+ "p.posterId = u.userId ";
 
 	public PostDao() {
 		super();
@@ -53,9 +53,10 @@ public class PostDao{
 	}
 
 
-	public Post findById(Integer i) {
+	public RestPost findById(Integer i) {
 		Session sess = sessF.getCurrentSession();
-		Post p = sess.get(Post.class, i);
+		TypedQuery<RestPost> q = sess.createQuery(baseString + "where postId = " + i + "", RestPost.class);
+		RestPost p = q.getSingleResult();
 		return p;
 	}
 
@@ -78,14 +79,19 @@ public class PostDao{
 
 	public Post delete(Integer i) {
 		Session sess = sessF.getCurrentSession();
-		Post p = sess.get(Post.class, i);
+		Post p = new Post();
+		p.setPostId(i);
 		sess.delete(p);
 		return p;
 	}
 	
-	public List<Post> findByUserId(int userId) {
+	public List<RestPost> findByUserId(int userId) {
 		try {
-		return sessF.getCurrentSession().createQuery("from Post where user_id = "+userId, Post.class).list();
+		//return sessF.getCurrentSession().createQuery("from Post where user_id = "+userId, Post.class).list();
+		Session sess = sessF.getCurrentSession();
+		TypedQuery<RestPost> q = sess.createQuery(baseString + "where posterId =" + userId + "",RestPost.class);
+		List<RestPost> p = q.getResultList();
+		return p;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

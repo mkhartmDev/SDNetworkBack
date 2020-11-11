@@ -8,6 +8,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.sdnetwork.dto.RestPost;
 import com.sdnetwork.model.*;
 
 @Service
@@ -30,13 +31,13 @@ public class LikeService {
 	
 	
 	public void addLike(int userId,int postId) {
-		Post p = pd.findById(postId);
-		User u = ud.findById(userId);
-		Set<User> likedBy=p.getLikedBy();
-		likedBy.add(u);
-		p.setLikedBy(likedBy);
-		p.setNumberOfLikes(p.getNumberOfLikes()+1);
-		pd.update(p);
+//		RestPost p = pd.findById(postId);
+//		User u = ud.findById(userId);
+//		Set<User> likedBy=p.getLikedBy();
+//		likedBy.add(u);
+//		p.setLikedBy(likedBy);
+//		p.setNumberOfLikes(p.getNumberOfLikes()+1);
+//		pd.update(p);
 //		Set<Post> userLikes = u.getLikes();
 //		u.setLikes(userLikes);
 //		userLikes.add(p);
@@ -44,13 +45,13 @@ public class LikeService {
 		
 	}
 	public void removeLike(int userId,int postId) {
-		Post p = pd.findById(postId);
-		User u = ud.findById(userId);
-		Set<User> likedBy=p.getLikedBy();
-		likedBy.remove(u);
-		p.setLikedBy(likedBy);
-		p.setNumberOfLikes(p.getNumberOfLikes()-1);
-		pd.update(p);
+//		Post p = pd.findById(postId);
+//		User u = ud.findById(userId);
+//		Set<User> likedBy=p.getLikedBy();
+//		likedBy.remove(u);
+//		p.setLikedBy(likedBy);
+//		p.setNumberOfLikes(p.getNumberOfLikes()-1);
+//		pd.update(p);
 //		Set<Post> userLikes = u.getLikes();
 //		u.setLikes(userLikes);
 //		userLikes.add(p);
