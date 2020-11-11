@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.sdnetwork.model.User;
 import com.sdnetwork.service.UserService;
 
+import java.util.List;
+
 @Controller
 @CrossOrigin
 @RequestMapping("/user")
@@ -52,6 +54,9 @@ public class UserController {
 		us.changePass(user.getUsername());
 	}
 
-
+	@GetMapping("/all")
+	public @ResponseBody List<User> getAllUsers() {
+		return us.getAllUsers();
+	}
 
 }
