@@ -13,6 +13,9 @@ public class RestPost {
 	private int numLikes;
 	private int postId;
 	private boolean isImagePost;
+	
+	
+	
 	public RestPost(String username, String firstName, String lastName, String postText, String imageLink,
 			Date dateTimePosted, int numLikes, int postId, boolean isImagePost) {
 		super();

@@ -31,8 +31,7 @@ public class LikeService {
 	}
 	
 	
-	public void addLike(RestLike like) {
-			
+	public void addLike(RestLike like) {	
 		pd.addLike(like);
 	}
 	public void removeLike(RestLike like) {
