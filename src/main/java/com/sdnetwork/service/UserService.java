@@ -67,6 +67,14 @@ public class UserService {
 		return user;
 	}
 	
+	public User changePassSettings(User user) throws Exception {
+		User use2 = ud.findByEmail(user.getEmail());
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		use2.setPassword(encoder.encode(user.getPassword()));
+		use2 = ud.update(use2);
+		return use2;
+	}
+	
 	public User findByEmail(String email) {
 		return ud.findByEmail(email);
 	}
