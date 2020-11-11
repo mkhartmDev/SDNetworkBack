@@ -9,8 +9,8 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class Email {
-	
-	 	private String from = "mkhartm@gmail.com";
+		//password on gmail is wasspord123
+	 	private String from = "SDNetworkFake@gmail.com";
 	    private String fromName = "Social Distancing Network";
 	    private String to = "mkhartm@gmail.com";
 	    private String smtpUser = "AKIAXDHJYEO6OOL2LE7T";
@@ -142,7 +142,7 @@ public class Email {
 	        msg.setSubject(this.getSubject());
 	        msg.setContent(this.getBody(),"text/html");
 	        
-	        msg.setHeader("X-SES-CONFIGURATION-SET", this.configSet);
+	        msg.setHeader("X-SES-CONFIGURATION-SET", this.getConfigSet());
 	            
 	        // Create a transport
 	        Transport transport = session.getTransport();
@@ -150,7 +150,7 @@ public class Email {
 	        // Send the message
 	        try
 	        {
-	            transport.connect(this.host, this.getSmtpUser(), this.smtpPass);
+	            transport.connect(this.getHost(), this.getSmtpUser(), this.getSmtpPass());
 	        	
 	            // Send the email.
 	            transport.sendMessage(msg, msg.getAllRecipients());
