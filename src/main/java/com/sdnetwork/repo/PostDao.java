@@ -2,15 +2,10 @@ package com.sdnetwork.repo;
 
 import java.sql.Timestamp;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Join;
-import javax.persistence.criteria.Root;
-import javax.persistence.metamodel.SingularAttribute;
+
 import javax.transaction.Transactional;
 
 import org.hibernate.Session;
