@@ -48,9 +48,11 @@ public class UserController {
 	
 
 	@PostMapping("/forgot")
-	public void ForgotPass(@RequestBody User user) throws Exception {
-		us.changePass(user.getUsername());
+	public @ResponseBody User changePassword(@RequestBody String email) throws Exception {
+		return us.changePass(email);
 	}
+	
+	
 
 
 
