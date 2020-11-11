@@ -1,6 +1,6 @@
 package com.sdnetwork.controller;
 
-import java.util.Arrays;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.sdnetwork.dto.RestPost;
 import com.sdnetwork.model.Post;
 import com.sdnetwork.service.PostService;
 
@@ -33,22 +34,23 @@ public class PostController {
 		this(new PostService());
 	}
 	
+
 	@GetMapping("/all")
-	public @ResponseBody List<Post> getAllPosts() {
+	public @ResponseBody List<RestPost> getAllPosts() {
 		return ps.getAll();
 		
 	}
 	
+
 	@GetMapping("/userid/{id}")
-	public @ResponseBody List<Post> getPostsByUserId(@PathVariable("id") int id){
+	public @ResponseBody List<RestPost> getPostsByUserId(@PathVariable("id") int id){
 		return ps.getById(id);
 	
 	}
 	
 	@PostMapping("/new")
-	public void createNewPost(@RequestBody Post p) {
-		ps.createNew(p);
-		
+	public @ResponseBody Post createNewPost(@RequestBody Post p) {
+		return ps.createNew(p);
 	}
 	
 	
