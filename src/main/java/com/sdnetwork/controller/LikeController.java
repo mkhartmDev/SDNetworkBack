@@ -1,13 +1,18 @@
 package com.sdnetwork.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.sdnetwork.dto.RestLike;
 import com.sdnetwork.service.LikeService;
 
 @Controller
@@ -28,14 +33,15 @@ public class LikeController {
 	private LikeService ls;
 	
 	@PostMapping("/add/{postId}")
-	public void addLike(@RequestParam("userId") int userId,@PathVariable("postId") int postId) {
-		ls.addLike(userId,postId);
+	public @ResponseBody void addLike(@RequestBody RestLike like) {
+		ls.addLike(like);
 		
 	}
 	
 	@PostMapping("/remove/{postId}")
-	public void removeLike(@RequestParam("userId") int userId,@PathVariable("postId") int postId) {
-		ls.removeLike(userId,postId);
+	public @ResponseBody void removeLike(@RequestBody RestLike like) {
+
+		ls.removeLike(like);
 	}
 
 }

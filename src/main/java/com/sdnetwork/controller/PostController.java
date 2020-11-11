@@ -50,6 +50,7 @@ public class PostController {
 	
 	@PostMapping("/new")
 	public @ResponseBody Post createNewPost(@RequestBody Post p) {
+		System.out.println(p);
 		return ps.createNew(p);
 		
 		

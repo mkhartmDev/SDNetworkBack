@@ -46,18 +46,21 @@ public class Post {
 		super();
 	}
 
-	public Post(int postId, int userId, String postText, int numberOfLikes, Timestamp dateTimePosted,
-			boolean isImagePost, String imageLink, Set<User> likedBy) {
+
+	public Post(int postId, int posterId, String postText, int numLikes, Timestamp dateTimePosted, boolean isImagePost,
+			String imageLink, Set<User> likedBy) {
 		super();
 		this.postId = postId;
-		this.posterId = userId;
+		this.posterId = posterId;
 		this.postText = postText;
-		this.numLikes = numberOfLikes;
+		this.numLikes = numLikes;
 		this.dateTimePosted = dateTimePosted;
 		this.isImagePost = isImagePost;
 		this.imageLink = imageLink;
 		this.likedBy = likedBy;
 	}
+
+
 
 	public int getPostId() {
 		return postId;
@@ -123,13 +126,35 @@ public class Post {
 		this.likedBy = likedBy;
 	}
 
-	@Override
-	public String toString() {
-		return "Post [postId=" + postId + ", userId=" + posterId + ", postText=" + postText + ", numberOfLikes="
-				+ numLikes + ", dateTimePosted=" + dateTimePosted + ", isImagePost=" + isImagePost + ", imageLink="
-				+ imageLink + ", likedBy=" + likedBy + "]";
+
+	public int getPosterId() {
+		return posterId;
 	}
 
+
+	public void setPosterId(int posterId) {
+		this.posterId = posterId;
+	}
+
+
+	public int getNumLikes() {
+		return numLikes;
+	}
+
+
+	public void setNumLikes(int numLikes) {
+		this.numLikes = numLikes;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Post [postId=" + postId + ", posterId=" + posterId + ", postText=" + postText + ", numLikes=" + numLikes
+				+ ", dateTimePosted=" + dateTimePosted + ", isImagePost=" + isImagePost + ", imageLink=" + imageLink
+				+ ", likedBy=" + likedBy + "]";
+	}
+
+	
 
 	
 }
