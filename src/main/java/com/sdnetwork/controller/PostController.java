@@ -18,7 +18,6 @@ import com.sdnetwork.service.PostService;
 
 @Controller
 @CrossOrigin
-@RequestMapping("/posts")
 public class PostController {
 	
 	private PostService ps;
@@ -33,21 +32,22 @@ public class PostController {
 		this(new PostService());
 	}
 	
-	@GetMapping("/all")
+	@GetMapping("/posts/all")
 	public @ResponseBody List<Post> getAllPosts() {
 		return ps.getAll();
 		
 	}
 	
-	@GetMapping("/userid/{id}")
+	@GetMapping("/posts/userid/{id}")
 	public @ResponseBody List<Post> getPostsByUserId(@PathVariable("id") int id){
 		return ps.getById(id);
 	
 	}
 	
-	@PostMapping("/new")
-	public void createNewPost(@RequestBody Post p) {
-		ps.createNew(p);
+	@PostMapping("/posts/new")
+	public @ResponseBody Post createNewPost(@RequestBody Post p) {
+		return ps.createNew(p);
+		
 		
 	}
 	
