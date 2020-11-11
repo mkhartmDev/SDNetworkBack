@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.sdnetwork.model.User;
+import com.sdnetwork.repo.UserDao;
 
 
 public class Driver {
@@ -26,7 +27,7 @@ public class Driver {
 		
 	//	PostService ps = ac.getBean(PostService.class);
 	//	UserDao ud = ac.getBean(UserDao.class);
-		UserDaoTest ud= new UserDaoTest();
+		UserDao ud= new UserDao();
 		List<User> li = new LinkedList<User>();
 		li = ud.findAll();
 		System.out.println(li.get(0).getEmail());

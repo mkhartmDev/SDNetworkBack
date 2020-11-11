@@ -8,17 +8,17 @@ import org.springframework.stereotype.Service;
 
 import com.sdnetwork.email.Email;
 import com.sdnetwork.model.User;
-import com.sdnetwork.repo.UserDaoTest;
+import com.sdnetwork.repo.UserDao;
 
 import java.util.List;
 
 @Service
 public class UserService {
 
-	UserDaoTest ud;
+	UserDao ud;
 
 	@Autowired
-	public UserService(UserDaoTest ud) {
+	public UserService(UserDao ud) {
 		super();
 		this.ud = ud;
 	}
