@@ -60,90 +60,68 @@ public class Post {
 		this.likedBy = likedBy;
 	}
 
-
-
 	public int getPostId() {
 		return postId;
 	}
-
+	
 	public void setPostId(int postId) {
 		this.postId = postId;
 	}
-
-	public int getUserId() {
-		return posterId;
-	}
-
-	public void setUserId(int userId) {
-		this.posterId = userId;
-	}
-
-	public String getPostText() {
-		return postText;
-	}
-
-	public void setPostText(String postText) {
-		this.postText = postText;
-	}
-
-	public int getNumberOfLikes() {
-		return numLikes;
-	}
-
-	public void setNumberOfLikes(int numberOfLikes) {
-		this.numLikes = numberOfLikes;
-	}
-
-	public Timestamp getDateTimePosted() {
-		return dateTimePosted;
-	}
-
-	public void setDateTimePosted(Timestamp dateTimePosted) {
-		this.dateTimePosted = dateTimePosted;
-	}
-
-	public boolean isImagePost() {
-		return isImagePost;
-	}
-
-	public void setImagePost(boolean isImagePost) {
-		this.isImagePost = isImagePost;
-	}
-
-	public String getImageLink() {
-		return imageLink;
-	}
-
-	public void setImageLink(String imageLink) {
-		this.imageLink = imageLink;
-	}
-
-	public Set<User> getLikedBy() {
-		return likedBy;
-	}
-
-	public void setLikedBy(Set<User> likedBy) {
-		this.likedBy = likedBy;
-	}
-
-
+	
 	public int getPosterId() {
 		return posterId;
 	}
-
-
+	
 	public void setPosterId(int posterId) {
 		this.posterId = posterId;
 	}
-
-
+	
+	public String getPostText() {
+		return postText;
+	}
+	
+	public void setPostText(String postText) {
+		this.postText = postText;
+	}
+	
 	public int getNumLikes() {
 		return numLikes;
 	}
-
-
+	
 	public void setNumLikes(int numLikes) {
 		this.numLikes = numLikes;
+	}
+	
+	public Timestamp getDateTimePosted() {
+		return dateTimePosted;
+	}
+	
+	public void setDateTimePosted(Timestamp dateTimePosted) {
+		this.dateTimePosted = dateTimePosted;
+	}
+	
+	public boolean isImagePost() {
+		return isImagePost;
+	}
+	
+	public void setImagePost(boolean imagePost) {
+		isImagePost = imagePost;
+	}
+	
+	public String getImageLink() {
+		return imageLink;
+	}
+	
+	public void setImageLink(String imageLink) {
+		this.imageLink = imageLink;
+	}
+	
+	public Set<User> getLikedBy() {
+		return likedBy;
+	}
+	
+	public void setLikedBy(Set<User> likedBy) {
+		this.likedBy = likedBy;
 	}
 
 

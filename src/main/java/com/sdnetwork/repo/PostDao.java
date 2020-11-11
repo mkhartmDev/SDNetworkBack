@@ -73,6 +73,7 @@ public class PostDao{
 		Timestamp now = new Timestamp(System.currentTimeMillis());
 		p.setDateTimePosted(now);
 		Session sess = sessF.getCurrentSession();
+		System.out.println(p);
 		sess.persist(p);
 		return p;
 	}
