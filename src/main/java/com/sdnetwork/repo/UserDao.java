@@ -2,7 +2,11 @@ package com.sdnetwork.repo;
 
 import java.util.List;
 
-
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 import org.hibernate.Session;
@@ -11,6 +15,8 @@ import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.sdnetwork.dto.RestPost;
+import com.sdnetwork.dto.RestUser;
 import com.sdnetwork.model.User;
 
 @Repository
@@ -19,6 +25,7 @@ import com.sdnetwork.model.User;
 public class UserDao  {
 	
 	SessionFactory sessF;
+	private final String baseString = "select new com.sdnetwork.dto.RestUser( u.userId, u.username, u.email, u.firstName, u.lastName, u.pfpLink) from User u";
 
 	public UserDao() {
 		super();
@@ -30,16 +37,23 @@ public class UserDao  {
 	}
 
 
-	public List<User> findAll() {
-
-		return sessF.openSession()
-				.createQuery("from User", User.class).list();
+	public List<RestUser> findAll() {
+		Session sess = sessF.openSession();
+		TypedQuery<RestUser> q = sess.createQuery(baseString, RestUser.class);
+		List<RestUser> p = q.getResultList();
+		return p;
 	}
 
 
+
+
+
 	public User findById(Integer i) {
-		return sessF.openSession()
-				.createQuery("from User where user_id = "+ i +"", User.class).list().get(0);
+		User user = sessF.openSession()
+				.createQuery(baseString + " where user_id = "+ i +"", User.class).list().get(0);
+		user.setLikes(null);
+		user.setPosts(null);
+		return user;
 	}
 
 
@@ -83,7 +97,10 @@ public class UserDao  {
 	
 	public User findByEmail(String email) {
 		try {
-		return sessF.openSession().createQuery("from User where email = '"+email+"'", User.class).list().get(0);
+		User user = sessF.openSession().createQuery("from User where email = '"+email+"'", User.class).list().get(0);
+		user.setLikes(null);
+		user.setPosts(null);
+		return user;
 		} catch (Exception e) {
 			return null;
 		}
