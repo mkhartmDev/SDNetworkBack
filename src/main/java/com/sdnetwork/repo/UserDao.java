@@ -72,7 +72,10 @@ public class UserDao  {
 	
 	public User findByUsername(String username) {
 		try {
-		return sessF.openSession().createQuery("from User where username = '"+username+"'", User.class).list().get(0);
+		User user = sessF.openSession().createQuery("from User where username = '"+username+"'", User.class).list().get(0);
+		user.setLikes(null);
+		user.setPosts(null);
+		return user;
 		} catch (Exception e) {
 			return null;
 		}
