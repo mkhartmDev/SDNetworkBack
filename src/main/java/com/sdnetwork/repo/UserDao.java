@@ -44,10 +44,6 @@ public class UserDao  {
 		return p;
 	}
 
-
-
-
-
 	public User findById(Integer i) {
 		User user = sessF.openSession()
 				.createQuery("from User where user_id = "+ i +"", User.class).list().get(0);
@@ -100,6 +96,20 @@ public class UserDao  {
 		User user = sessF.openSession().createQuery("from User where email = '"+email+"'", User.class).list().get(0);
 		user.setLikes(null);
 		return user;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	public List<User>  findBySearch(String search) {
+		try {
+		List<User> li = sessF.openSession().createQuery("from User where last_name = '" + search + "'", User.class).list();
+		for(int i = 0; i < li.size(); i++)
+		{
+			li.get(i).setLikes(null);
+			li.get(i).setPosts(null);
+		}
+		return li;
 		} catch (Exception e) {
 			return null;
 		}
