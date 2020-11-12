@@ -50,9 +50,7 @@ public class UserDao  {
 
 	public User findById(Integer i) {
 		User user = sessF.openSession()
-				.createQuery(baseString + " where user_id = "+ i +"", User.class).list().get(0);
-		user.setLikes(null);
-		user.setPosts(null);
+				.createQuery("from User where user_id = "+ i +"", User.class).list().get(0);
 		return user;
 	}
 
@@ -60,6 +58,8 @@ public class UserDao  {
 	public User update(User t) {
 		Session sess = sessF.getCurrentSession();
 		sess.merge(t);
+		t.setLikes(null);
+		t.setPosts(null);
 		return t;
 	}
 
@@ -99,7 +99,6 @@ public class UserDao  {
 		try {
 		User user = sessF.openSession().createQuery("from User where email = '"+email+"'", User.class).list().get(0);
 		user.setLikes(null);
-		user.setPosts(null);
 		return user;
 		} catch (Exception e) {
 			return null;

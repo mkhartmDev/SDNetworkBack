@@ -45,7 +45,7 @@ public class User {
 	@Column(name="pfp_link")
 	private String pfpLink;
 	
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	@JoinColumn(name="poster_id")
 	private Set<Post> posts;
 	
