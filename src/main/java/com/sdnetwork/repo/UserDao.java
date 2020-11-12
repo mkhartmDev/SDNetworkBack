@@ -2,10 +2,6 @@ package com.sdnetwork.repo;
 
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
@@ -15,7 +11,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.sdnetwork.dto.RestPost;
+
 import com.sdnetwork.dto.RestUser;
 import com.sdnetwork.model.User;
 
