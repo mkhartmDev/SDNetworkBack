@@ -49,12 +49,12 @@ public class PostDao{
 	}
 
 
-	public RestPost findById(Integer i) {
-		Session sess = sessF.getCurrentSession();
-		TypedQuery<RestPost> q = sess.createQuery(baseString + "where postId = " + i + "", RestPost.class);
-		RestPost p = q.getSingleResult();
-		return p;
-	}
+//	public RestPost findById(Integer i) {
+//		Session sess = sessF.getCurrentSession();
+//		TypedQuery<RestPost> q = sess.createQuery(baseString + "where postId = " + i + "", RestPost.class);
+//		RestPost p = q.getSingleResult();
+//		return p;
+//	}
 
 
 	public Post update(Post p) {
@@ -68,8 +68,7 @@ public class PostDao{
 		Timestamp now = new Timestamp(System.currentTimeMillis());
 		p.setDateTimePosted(now);
 		Session sess = sessF.getCurrentSession();
-		System.out.println(p);
-		sess.persist(p);
+		sess.save(p);
 		return p;
 	}
 
