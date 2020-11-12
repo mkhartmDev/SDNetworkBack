@@ -39,6 +39,7 @@ public class UserService {
 	public User updateUser(User user) {
 		User u = ud.findById(user.getUserId());
 		user.setPassword(u.getPassword());
+		user.setPosts(u.getPosts());
 		ud.update(user);
 		return user;
 	}
@@ -82,6 +83,13 @@ public class UserService {
 	
 	public List<RestUser> getAllUsers() {
 		return ud.findAll();
+	}
+	
+	public List<User> findBySearch(String search) {
+		String search2 = search.replaceAll("=", "");
+		//User user = ud.findBySearch(search2).get(0);
+		// System.out.println(user.toString());
+		return ud.findBySearch(search2);
 	}
 	
 }
