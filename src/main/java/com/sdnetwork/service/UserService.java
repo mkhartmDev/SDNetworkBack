@@ -84,4 +84,11 @@ public class UserService {
 		return ud.findAll();
 	}
 	
+	public List<User> findBySearch(String search) {
+		String search2 = search.replaceAll("=", "");
+		User user = ud.findBySearch(search2).get(0);
+		System.out.println(user.toString());
+		return ud.findBySearch(search2);
+	}
+	
 }
