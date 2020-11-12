@@ -12,6 +12,7 @@ import org.junit.runners.MethodSorters;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +23,8 @@ import com.sdnetwork.repo.UserDao;
 @ContextConfiguration(locations = "classpath:applicationContext-test.xml")
 @ExtendWith(MockitoExtension.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
+@Transactional
+@Rollback(true)
 class UserDaoTest {
 	
 	private static ApplicationContext ac = new ClassPathXmlApplicationContext("classpath:applicationContext-test.xml");
@@ -31,9 +34,9 @@ class UserDaoTest {
 	
 	@Test
 	void testASave() {
-		assertNotNull(ud.save(user0));
+		this.user0 = ud.save(user0);
+		assertNotNull(user0);
 		assertNull(ud.save(user0));
-		fail("Not yet implemented");
 	}
 
 	@Test
@@ -45,40 +48,44 @@ class UserDaoTest {
 	}
 
 	@Test
-	void testCFindById() {
-		assertNotNull(ud.findById(user0.getUserId()));
+	void testBFindById() {
+		assertNotNull(ud.findById(1));
 		assertNull(ud.findById(2));
-		fail("Not yet implemented");
 	}
 
 	@Test
 	void testDFindByUsername() {
 		assertNotNull(ud.findByUsername(user0.getUsername()));
 		assertNull(ud.findByUsername("yeslek"));
-		fail("Not yet implemented");
 	}
 	
 	@Test
 	void testEFindByEmail() {
-		fail("Not yet implemented");
+			User use = ud.findByEmail("kelsey");
+			assertNotNull(use);
+	}
+
+	@Test
+	void testFFindBySearch() {
+		assertNotNull(ud.findBySearch("kelsey"));
+		assertTrue((ud.findBySearch("yeslek")).isEmpty());
 	}
 	
 	@Test
-	void testUpdate() {
-		fail("Not yet implemented");
+	void testJUpdate() {
+		user0.setEmail("yeslek");
+		user0 = ud.update(user0);
+		assertEquals("yeslek", user0.getEmail());
 	}
 
 
 	@Test
-	void testDelete() {
-		fail("Not yet implemented");
+	void testADelete() {
+		assertNotNull(ud.delete(1));
+
 	}
 
 
 
-	@Test
-	void testFindBySearch() {
-		fail("Not yet implemented");
-	}
 
 }
