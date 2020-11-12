@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.sdnetwork.dto.RestUser;
 import com.sdnetwork.model.User;
 import com.sdnetwork.service.UserService;
 
@@ -61,7 +62,7 @@ public class UserController {
 	
 
 	@GetMapping("/all")
-	public @ResponseBody List<User> getAllUsers() {
+	public @ResponseBody List<RestUser> getAllUsers() {
 		return us.getAllUsers();
 	}
 

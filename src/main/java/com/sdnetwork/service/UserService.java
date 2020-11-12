@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.sdnetwork.dto.RestUser;
 import com.sdnetwork.email.Email;
 import com.sdnetwork.model.User;
 import com.sdnetwork.repo.UserDao;
@@ -79,7 +80,7 @@ public class UserService {
 		return ud.findByEmail(email);
 	}
 	
-	public List<User> getAllUsers() {
+	public List<RestUser> getAllUsers() {
 		return ud.findAll();
 	}
 	
