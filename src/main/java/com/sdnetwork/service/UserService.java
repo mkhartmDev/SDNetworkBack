@@ -39,6 +39,7 @@ public class UserService {
 	public User updateUser(User user) {
 		User u = ud.findById(user.getUserId());
 		user.setPassword(u.getPassword());
+		user.setPosts(u.getPosts());
 		ud.update(user);
 		return user;
 	}
