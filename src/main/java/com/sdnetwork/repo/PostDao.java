@@ -28,7 +28,7 @@ public class PostDao{
 			+ "u.username, u.firstName, u.lastName, p.postText, p.imageLink, p.dateTimePosted, p.numLikes, p.postId, p.isImagePost)"
 			+ "from Post p join User u on "
 			+ "p.posterId = u.userId ";
-
+	
 	public PostDao() {
 		super();
 	}
