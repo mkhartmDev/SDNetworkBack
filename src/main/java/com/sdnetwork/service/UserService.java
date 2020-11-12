@@ -1,5 +1,6 @@
 package com.sdnetwork.service;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,7 @@ import java.util.List;
 public class UserService {
 
 	UserDao ud;
+	private static final Logger log = Logger.getLogger(UserService.class);
 
 	@Autowired
 	public UserService(UserDao ud) {
@@ -89,6 +91,7 @@ public class UserService {
 		String search2 = search.replaceAll("=", "");
 		//User user = ud.findBySearch(search2).get(0);
 		// System.out.println(user.toString());
+		log.info("test");
 		return ud.findBySearch(search2);
 	}
 	
