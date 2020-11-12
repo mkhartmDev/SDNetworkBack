@@ -59,11 +59,14 @@ public class UserController {
 		return us.changePassSettings(user);
 	}
 	
-	
-
 	@GetMapping("/all")
 	public @ResponseBody List<RestUser> getAllUsers() {
 		return us.getAllUsers();
+	}
+	
+	@PostMapping("/search")
+	public @ResponseBody List<User> searchUsers(@RequestBody String search) {
+		return us.findBySearch(search);
 	}
 
 }
