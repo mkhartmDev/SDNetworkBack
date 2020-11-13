@@ -4,7 +4,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runners.MethodSorters;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -40,32 +42,38 @@ class PostDaoTest {
 	}
 	
 	@BeforeClass
+	@Order(1)
 	public void init() {
 	}
 	
 	@Test
+	@Order(2)
 	void ASavetest() { 
 		this.post = pd.save(post);
 		assertNotNull(post);
 	}
 
 	@Test
+	@Order(3)
 	void BFindAlltest() { 
 		assertNotNull(pd.findAll());
 	}
 
-	@Test
-	void DUpdatetest() { 
-		post.setPostText("world");
-		assertNotNull(pd.update(post));
-	}
+//	@Test
+//	@Order(4)
+//	void DUpdatetest() { 
+//		post.setPostText("world");
+//		assertNotNull(pd.update(post));
+//	}
 
 	@Test
+	@Order(5)
 	void EFindByUserIdtest() { 
 		assertNotNull(pd.findByUserId(1));
 	}
 
 	@Test
+	@Order(6)
 	void ZDeletetest() { 
 		assertNotNull(pd.delete(1));
 	}
