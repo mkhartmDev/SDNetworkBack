@@ -43,7 +43,7 @@ public class PostDao{
 	public List<RestPost> findAll() {
 //		return sessF.openSession().createNativeQuery("select * from post", Post.class).list();
 		Session sess = sessF.getCurrentSession();
-		TypedQuery<RestPost> q = sess.createQuery(baseString + "order by date_time_posted",RestPost.class);
+		TypedQuery<RestPost> q = sess.createQuery(baseString + "order by date_time_posted desc",RestPost.class);
 		List<RestPost> p = q.getResultList();
 		return p;
 
