@@ -26,17 +26,21 @@ public class PostService {
 	}
 
 	public List<RestPost> getAll() {
-		List<RestPost> allPosts = pd.findAll();
+		List<RestPost> allPosts = getPd().findAll();
 		return allPosts;
 		
 	}
 	
 	public List<RestPost> getById(int i){
-		return pd.findByUserId(i);
+		return getPd().findByUserId(i);
 	}
 
 	public Post createNew(Post p) {
-		return pd.save(p);
+		return getPd().save(p);
+	}
+
+	public PostDao getPd() {
+		return pd;
 	}
 	
 
