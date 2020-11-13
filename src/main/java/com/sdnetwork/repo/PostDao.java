@@ -3,6 +3,7 @@ package com.sdnetwork.repo;
 import java.sql.Timestamp;
 import java.util.List;
 
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import javax.transaction.Transactional;
@@ -97,7 +98,7 @@ public class PostDao{
 	public void addLike(RestLike like) {
 		Session sess = sessF.getCurrentSession();
 		try {
-		sess.createNativeQuery("insert into likes values (" + Integer.toString(like.getPostId()) +", "+ Integer.toString(like.getUserId()) + ")").executeUpdate();
+		sess.createNativeQuery("insert into likes values (" + Integer.toString(like.getUserId()) +", "+ Integer.toString(like.getPostId())  + ")").executeUpdate();
 		sess.createNativeQuery("update post set number_of_likes=number_of_likes+1 where post_id="+ like.getPostId()).executeUpdate();
 		} catch (Exception e) {
 			
@@ -106,8 +107,8 @@ public class PostDao{
 	public void removeLike(RestLike like) {
 		Session sess = sessF.getCurrentSession();
 		try {
-		sess.createNativeQuery("delete from likes where post_id = " + Integer.toString(like.getPostId()) +" and user_id = "+ Integer.toString(like.getUserId())).executeUpdate();	
-		sess.createNativeQuery("update post set number_of_likes=number_of_likes-1 where post_id="+ like.getPostId()).executeUpdate();
+		Query q = sess.createNativeQuery("delete from likes where post_id = " + Integer.toString(like.getUserId()) +" and user_id = "+ Integer.toString(like.getPostId()));	
+		if(q.executeUpdate() != 0) {sess.createNativeQuery("update post set number_of_likes=number_of_likes-1 where post_id="+ like.getPostId()).executeUpdate(); }
 		} catch (Exception e) {
 			
 		}
